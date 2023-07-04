@@ -7,9 +7,10 @@ import axios from 'axios';
 
 function App() {
   
-  const [puntos, setPuntos] = useState(0)
-  const [paises, setPaises] = useState([])
-  const [numram,setNumram] = useState(0)
+  const [puntos, setPuntos] = useState(0);
+  const [paises, setPaises] = useState([]);
+  const [numram,setNumram] = useState(0);
+  const [resultado, setResultado] = useState("");
   useEffect(() => {
     axios
     .get("https://countriesnow.space/api/v0.1/countries/flag/images")
@@ -36,13 +37,21 @@ function App() {
   const comprobarRespuesta = (respuesta)=>{
     console.log ("num ram", numram)
     if(respuesta == paises[numram].name){
+      setPuntos(puntos +10)
       console.log("la respuesta fue correcta");
+      setResultado("Su respuesta es CORRECTA");
     }else{
+      setPuntos(puntos -1)
       console.log ("la respuesta estuvo mal");
+      setResultado("Su respuesta es INCORRECTA");
     }
 
+   
   }
-  
+  const cambiarDeBandera=()=>{
+    generarNumeroAleatorio();
+    setResultado("");
+  }
   return (
     <>    
     <h1>Adivina la bandera</h1>    
@@ -53,9 +62,13 @@ function App() {
     ) : <div>Loading</div>}
     
     <Formulario sacarDatos = {comprobarRespuesta}/>
+    <p>Sus puntos son: {puntos}</p>
     
+    <h3> {resultado}</h3>
+
+    <button onClick={cambiarDeBandera}>Siguiente pregunta</button>
     </>
-  
+    
   );
 }
 //
