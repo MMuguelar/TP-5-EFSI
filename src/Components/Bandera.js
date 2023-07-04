@@ -1,23 +1,17 @@
 
 import React, { useState } from "react";
+import Formulario from "./Formulario";
 
 
 function Bandera({pais, bandera}) {
 
-    const comprobarRespuesta = (e)=>{
-        console.log(e);
-        document.querySelector('#modificar').value="skafdbhjfbdjfwe"
-      }
+    console.log("pais", pais);
   return (
    <>
     <img src ={bandera} />
-    <form onSubmit={comprobarRespuesta}>
-    <label> Nombre Mascota</label> 
-    <input type="text"  name="name" className="u-full-width" placeholder="Nombre Bandera"  ></input>
-    <button type="submit" className="u-full-width button-primary" >Agregar Cita</button>
-    </form>
-    <br></br>
-    <div id="modificar"></div>
+    
+    
+    
    </>
   )
 }
